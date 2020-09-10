@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             navController.navigate(
-                    R.id.action_portalsFragment2_to_addPortalFragment2
+                    R.id.action_portalsFragment_to_addPortalFragment
             )
         }
     }
