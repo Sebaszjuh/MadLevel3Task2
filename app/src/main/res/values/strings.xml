@@ -12,4 +12,6 @@
     <string name="title">Title</string>
     <string name="url">URL:</string>
     <string name="btnAddPortal">ADD PORTAL</string>
+
+    <string name="not_valid_portal">Invalid portal</string>
 </resources>
