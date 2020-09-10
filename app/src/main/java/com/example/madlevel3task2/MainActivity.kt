@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +23,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+        navController = findNavController(R.id.nav_host_fragment)
+
         fab.setOnClickListener {
             navController.navigate(
                 R.id.action_portalsFragment_to_addPortalFragment
             )
         }
-
         fabToggler()
     }
 
@@ -58,6 +60,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
