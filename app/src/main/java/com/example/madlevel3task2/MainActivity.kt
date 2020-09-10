@@ -6,7 +6,11 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             navController.navigate(
-                    R.id.action_portalsFragment_to_addPortalFragment
+                R.id.action_portalsFragment_to_addPortalFragment
             )
         }
+
+        fabToggler()
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -40,4 +48,16 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun fabToggler() {
+        navController.addOnDestinationChangedListener { _,       destination, _ ->
+            if (destination.id in arrayOf(R.id.addPortalFragment)) {
+                fab.hide()
+            } else {
+                fab.show()
+            }
+        }
+    }
+
+
 }
