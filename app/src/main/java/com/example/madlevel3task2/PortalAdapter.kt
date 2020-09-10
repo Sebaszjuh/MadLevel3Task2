@@ -21,6 +21,8 @@ class PortalAdapter(private val portals: List<Portal>) :
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_portal, parent, false)
         )
+
+
     }
 
     override fun getItemCount(): Int {

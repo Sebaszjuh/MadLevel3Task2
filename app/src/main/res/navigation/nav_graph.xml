@@ -21,5 +21,8 @@
         <!--        <action-->
         <!--            android:id="@+id/action_addPortalFragment_to_portalsFragment"-->
         <!--            app:destination="@id/portalsFragment" />-->
+        <action
+            android:id="@+id/action_addPortalFragment_to_portalsFragment"
+            app:destination="@id/portalsFragment" />
     </fragment>
 </navigation>
