@@ -40,15 +40,6 @@ class PortalsFragment : Fragment() {
     }
 
     private fun observeAddPortalResult() {
-//        setFragmentResultListener(ARG_TITLE_INPUT) { key, bundle ->
-//            bundle.getString(ARG_URL_INPUT)?.let {
-//                val portal = Portal(it, ARG_TITLE_INPUT)
-//
-//                portals.add(portal)
-//                portalAdapter.notifyDataSetChanged()
-//            } ?: Log.e("ReminderFragment", "Request triggered, but empty reminder text!")
-//
-//        }
 
         val titleInput = arguments?.getString(ARG_TITLE_INPUT)
         val urlInput = arguments?.getString(ARG_URL_INPUT)
@@ -67,12 +58,7 @@ class PortalsFragment : Fragment() {
         rvPortals.layoutManager =
             StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         rvPortals.adapter = portalAdapter
-        rvPortals.addItemDecoration(
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            )
-        )
+
         //adds reminder to view
 //        createItemTouchHelper().attachToRecyclerView(rvPortals)
 
