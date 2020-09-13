@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_add_portal.*
 
 const val REQ_PORTAL_KEY = "req_portal"
 const val BUNDLE_PORTAL_KEY = "portal_key"
+const val MINIMUM_URL_LENGTH = 7
 
 
 class AddPortalFragment : Fragment() {
@@ -39,9 +40,8 @@ class AddPortalFragment : Fragment() {
         val textInput = textInput.text.toString()
         val urlInput = urlInput.text.toString()
 
-        if (textInput.isNotBlank()) {
+        if (textInput.isNotBlank() && urlInput.length > MINIMUM_URL_LENGTH) {
             val portal = Portal(textInput, urlInput)
-            //set the data as fragmentResult, we are listening for REQ_REMINDER_KEY in RemindersFragment!
             setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portal)))
 
             findNavController().popBackStack()
