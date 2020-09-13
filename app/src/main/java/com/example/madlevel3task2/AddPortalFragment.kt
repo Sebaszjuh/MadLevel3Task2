@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_add_portal.*
 
-const val ARG_TITLE_INPUT = "arg_title_input"
-const val ARG_URL_INPUT = "arg_url_input"
+const val REQ_PORTAL_KEY = "req_portal"
+const val BUNDLE_PORTAL_KEY = "portal_key"
+
 
 class AddPortalFragment : Fragment() {
 
@@ -32,17 +35,16 @@ class AddPortalFragment : Fragment() {
     }
 
     private fun onAddPortal() {
-        val titleInput = textInput.text.toString()
+
+        val textInput = textInput.text.toString()
         val urlInput = urlInput.text.toString()
 
-        if (titleInput.isNotBlank() ) {
+        if (textInput.isNotBlank()) {
+            val portal = Portal(textInput, urlInput)
             //set the data as fragmentResult, we are listening for REQ_REMINDER_KEY in RemindersFragment!
+            setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portal)))
 
-            val args = Bundle()
-            args.putString(ARG_TITLE_INPUT, titleInput)
-            args.putString(ARG_URL_INPUT, urlInput)
-
-            findNavController().navigate(R.id.action_addPortalFragment_to_portalsFragment, args)
+            findNavController().popBackStack()
 
         } else {
             Toast.makeText(

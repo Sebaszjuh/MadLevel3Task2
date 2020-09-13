@@ -6,14 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.setFragmentResultListener
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import kotlinx.android.synthetic.main.fragment_add_portal.*
+import androidx.recyclerview.widget.*
 import kotlinx.android.synthetic.main.fragment_portals.*
 
 /**
@@ -34,23 +28,24 @@ class PortalsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initViews()
         observeAddPortalResult()
     }
 
     private fun observeAddPortalResult() {
+//        val titleInput = arguments?.getString(ARG_TITLE_INPUT)
+//        val urlInput = arguments?.getString(ARG_URL_INPUT)
+//        if (!titleInput.isNullOrBlank()) {
+//            val portal = Portal(titleInput.toString(), urlInput.toString())
 
-        val titleInput = arguments?.getString(ARG_TITLE_INPUT)
-        val urlInput = arguments?.getString(ARG_URL_INPUT)
-        if(!titleInput.isNullOrBlank()){
-            val portal = Portal(titleInput.toString(), urlInput.toString())
-            portals.add(portal)
-            portalAdapter.notifyDataSetChanged()
-        } else{
-            Log.e("ReminderFragment", "Request triggered, but empty reminder text!")
+        setFragmentResultListener(REQ_PORTAL_KEY) { _, bundle ->
+            bundle.getParcelable<Portal>(BUNDLE_PORTAL_KEY)?.let {
+                val portal = Portal(it.titleText, it.urlText)
+                portals.add(portal)
+                portalAdapter.notifyDataSetChanged()
+            }?: Log.e("PortalsFragment", "Request triggered, but empty reminder text!")
+
         }
-
     }
 
     private fun initViews() {
